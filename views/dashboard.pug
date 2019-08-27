@@ -1,0 +1,11 @@
+html
+  head
+  body
+    h1 Hola, #{user.username}
+    form(method='post' action='/todo')
+      input(type='text' name='description')
+      input(type='submit' value='Agregar')
+    ul
+      each todo in user.todos
+        li #{todo.description} #[a(href='#') Borrar]
+    a(href='/logout') Logout        
