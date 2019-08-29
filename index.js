@@ -121,6 +121,12 @@ app.get('/logout',
     req.logout();
     res.redirect('/');
 });
+app.post('/delete/todo', (req, res) => {
+  Todo.findByIdAndRemove(req.body.id, err => {
+    if (err) return next(err);
+    res.redirect('/dashboard');
+  });
+});
 
 // REST API
 // Todo routes

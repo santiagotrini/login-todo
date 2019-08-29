@@ -1,18 +1,21 @@
-html
-  head
-  body
-    h1 Login
-    form(method='post' action='/login')
-      input(type='text' name='username')
-      br
-      input(type='password' name='password')
-      br    
-      input(type='submit' value='Login')
-    h1 Register
-    form(method='post' action='/user')
-      input(type='text' name='username')
-      br
-      input(type='password' name='password')
-      br    
-      input(type='submit' value='Register')  
+extends layout
+
+block content
+  h1.text-center Login
+  form(method='post' action='/login')
+    .form-group
+      input(class='form-control' placeholder='Usuario' type='text' name='username')
+    .form-group
+      input(class='form-control' placeholder='Password' type='password' name='password')   
+    button(type='submit' class='btn btn-primary btn-lg') Login
+  
+  h4.text-center ¿No tenés cuenta?
+  
+  h1.text-center Registrarse
+  form(method='post' action='/user')
+    .form-group
+      input(class='form-control' placeholder='Usuario' type='text' name='username')
+    .form-group
+      input(class='form-control' placeholder='Password' type='password' name='password')   
+    button(type='submit' class='btn btn-primary btn-lg') Registrarse
             
