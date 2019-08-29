@@ -5,7 +5,7 @@ block content
   form(method='post' action='/todo')
     input(type='text' name='description')
     input(type='submit' value='Agregar')
-  each todo in user.todos
+  each todo in todos
     form(method='post' action='/delete/todo')
       label #{todo.description}
       input(type='hidden' name='id' value=todo._id)

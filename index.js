@@ -26,11 +26,7 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-  todos: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Todo'
-  }]
+  }
 });
 // User model
 const User = mongoose.model('User', UserSchema);
@@ -108,12 +104,9 @@ app.post('/login',
 app.get('/dashboard',
   require('connect-ensure-login').ensureLoggedIn('/'),
   (req, res) => {
-    User
-    .findById(req.user._id)
-    .populate('todos')
-    .exec((err, user) => {
+    Todo.find({ author: req.user._id }, (err, todos) => {
       if (err) return next(err);
-      res.render('dashboard', { user: user });
+      res.render('dashboard', { user: req.user, todos: todos });
     });
   });
 app.get('/logout',
@@ -138,12 +131,7 @@ app.post('/todo', (req, res) => {
   });
   todo.save(err => {
     if (err) return next(err);
-    User.findById(req.user._id, (err, user) => {
-      user.todos.push(todo._id);
-      user.save(err => {
-        res.redirect('/dashboard');
-      });
-    });
+    res.redirect('/dashboard');
   });
 });
 // GET /todos
