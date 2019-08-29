@@ -6,15 +6,18 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 
 // config
-const port = 3000;
-const db = 'mongodb://localhost/app';
+const port = process.env.PORT || 3000;
+// const db = 'mongodb://localhost/mvc_app';
+const db = 'mongodb://user:user1234@ds353007.mlab.com:53007/mvc_app'
 
 // database connection
 mongoose.set('useFindAndModify', false);
-mongoose.connect(db, { useNewUrlParser: true })
-.then(() => {
-  console.log('DB connected');
-});
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => {
+    console.log("DB connected");
+  })
+.catch(err => console.error(`Connection error ${err}`));
 
 // models
 // User schema
