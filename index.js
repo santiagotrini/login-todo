@@ -7,8 +7,8 @@ const bcrypt = require('bcrypt');
 
 // config
 const port = process.env.PORT || 3000;
-// const db = 'mongodb://localhost/mvc_app';
-const db = 'mongodb://user:user1234@ds353007.mlab.com:53007/mvc_app'
+const db = 'mongodb://localhost/mvc_app';
+// const db = 'mongodb://user:user1234@ds353007.mlab.com:53007/mvc_app'
 
 // database connection
 mongoose.set('useFindAndModify', false);
@@ -91,6 +91,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.set('view engine', 'pug');
 app.set('views', './views');
+app.use(express.static('public'));
 
 // routes & controllers
 // site routes
