@@ -1,13 +1,15 @@
 extends layout
 
 block content
-  h1 Hola, #{user.username}
-  form(method='post' action='/todo')
-    input(type='text' name='description')
-    input(type='submit' value='Agregar')
+  h1.text-center Hola, #{user.username}
+  form(class='form-inline' method='post' action='/todo')
+    input(class='form-control mb-2 mr-sm-2' type='text' name='description' placeholder='Tarea...')
+    button(class='btn mb-2 btn-secondary' type='submit') Agregar tarea
   each todo in todos
-    form(method='post' action='/delete/todo')
-      label #{todo.description}
+    form(class='form-inline' method='post' action='/delete/todo')
       input(type='hidden' name='id' value=todo._id)
-      input(type='submit' value='Borrar')  
-  a(href='/logout') Logout        
+      .form-group  
+        input(type='text' readonly class='form-control-plaintext' value=todo.description)
+      button(class='btn btn-link' type='submit') Borrar  
+  h2.text-center
+    a(href='/logout') Logout        
