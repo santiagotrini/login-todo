@@ -1,21 +1,25 @@
 extends layout
 
 block content
-  h1.text-center Login
-  form(method='post' action='/login')
-    .form-group
-      input(class='form-control' placeholder='Usuario' type='text' name='username')
-    .form-group
-      input(class='form-control' placeholder='Password' type='password' name='password')   
-    button(type='submit' class='btn btn-primary btn-lg') Login
-  
-  h4.text-center ¿No tenés cuenta?
-  
-  h1.text-center Registrarse
-  form(method='post' action='/user')
-    .form-group
-      input(class='form-control' placeholder='Usuario' type='text' name='username')
-    .form-group
-      input(class='form-control' placeholder='Password' type='password' name='password')   
-    button(type='submit' class='btn btn-primary btn-lg') Registrarse
-            
+  .row.mt-5
+    .col-4
+    .col-4
+      h2 Iniciar sesión
+      form(class='mb-5' method='post' action='/login')
+        .form-group
+          input(class='form-control' placeholder='Usuario' type='text' name='username')
+        .form-group
+          input(class='form-control' placeholder='Contraseña' type='password' name='password')   
+        button(type='submit' class='btn btn-primary') Ingresar
+      hr
+      h5.text-center ¿No tenés cuenta?
+      hr
+      br
+      h2 Registrarse
+      form(method='post' action='/user')
+        .form-group
+          input(class='form-control' placeholder='Usuario' type='text' name='username')
+        .form-group
+          input(class='form-control' placeholder='Contraseña' type='password' name='password')   
+        button(type='submit' class='btn btn-primary') Registrarse
+      .col-4          

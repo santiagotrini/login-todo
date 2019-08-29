@@ -1,17 +1,22 @@
 extends layout
 
 block content
-  h1.text-center Hola, #{user.username}. 
-  form(class='form-inline' method='post' action='/todo')
-    input(class='form-control mb-2 mr-sm-2' type='text' name='description' placeholder='Tarea...')
-    button(class='btn mb-2 btn-secondary' type='submit') Agregar tarea
-  hr  
-  each todo in todos
-    form(class='form-inline' method='post' action='/delete/todo')
-      input(type='hidden' name='id' value=todo._id)
-      .form-check
-        input(class='form-check-input' type='checkbox' id=todo._id)
-        label(class='form-check-label' for=todo._id) #{todo.description}      
-      button(class='btn btn-link' type='submit') Borrar  
-  h2.text-center
-    a(href='/logout') Logout        
+  .row.mt-5
+    .col-3
+    .col-6
+      h2 Hola, #{user.username}.  
+      form(class='form-inline mt-3' method='post' action='/todo')
+        input(class='form-control mb-2 mr-sm-2' type='text' name='description' placeholder='Tarea...')
+        button(class='btn mb-2 btn-secondary' type='submit') Agregar tarea
+      hr  
+      each todo in todos
+        form(class='form-inline' method='post' action='/delete/todo')
+          input(type='hidden' name='id' value=todo._id)
+          .form-check
+            input(class='form-check-input' type='checkbox' id=todo._id)
+            label(class='form-check-label' for=todo._id) #{todo.description}      
+          button(class='btn btn-link' type='submit') Borrar  
+      hr
+      h4.text-center.mt-5
+        a(href='/logout') Cerrar sesión        
+    .col-3    
