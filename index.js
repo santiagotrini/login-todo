@@ -87,8 +87,10 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// passport requiere estas dos lineas de middleware
 app.use(passport.initialize());
 app.use(passport.session());
+// fin setear passport
 app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(express.static('public'));
@@ -163,6 +165,7 @@ app.post('/user', (req, res) => {
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(user.password, salt, (err, hash) => {
       if (err) throw err;
+      // guardamos el hash en la db
       user.password = hash;
       user.save(err => {
         if (err) return next(err);
